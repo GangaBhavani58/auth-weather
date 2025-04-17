@@ -18,6 +18,7 @@
                 id="username"
                 formControlName="username"
                 class="form-control"
+                autocomplete="off"
                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
               />
               <div
@@ -33,12 +34,23 @@
             <div class="form-group mb-3">
               <label for="password">Password</label>
               <input
-                type="password"
+                [type]="showPassword ? 'text' : 'password'"
                 id="password"
                 formControlName="password"
                 class="form-control"
+                autocomplete="off"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
               />
+              <div class="toggle mt-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  (click)="togglePasswordVisibility()"
+                  tabindex="-1"
+                >
+                  {{ showPassword ? "Hide" : "Show" }}
+                </button>
+              </div>
               <div
                 *ngIf="f.password.touched && f.password.errors"
                 class="invalid-feedback d-block"

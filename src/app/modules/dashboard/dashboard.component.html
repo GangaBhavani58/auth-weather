@@ -48,7 +48,12 @@
                     id="cityInput"
                     class="form-control"
                     [(ngModel)]="city"
+                    #cityInput="ngModel"
+                    required
                     placeholder="Enter city name"
+                    [ngClass]="{
+                      'is-invalid': cityInput.invalid && cityInput.touched
+                    }"
                   />
                   <button
                     class="btn btn-outline-primary"
@@ -60,7 +65,10 @@
                 </div>
               </div>
 
-              <div *ngIf="weatherLoading" class="text-center">
+              <div
+                *ngIf="weatherLoading"
+                class="text-center spinner-border-sm text-primary"
+              >
                 <p>Loading weather data...</p>
               </div>
 
