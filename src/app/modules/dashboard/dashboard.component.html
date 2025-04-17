@@ -1,0 +1,101 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div
+          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        >
+          <h4 class="mb-0">Dashboard</h4>
+          <button class="btn btn-sm btn-light" (click)="logout()">
+            Logout
+          </button>
+        </div>
+        <div class="card-body">
+          <div *ngIf="currentUser" class="mb-4">
+            <h5>
+              Welcome, {{ currentUser.firstName }} {{ currentUser.lastName }}!
+            </h5>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Current Time (IST)</h5>
+                  <h3>{{ istTime | date : "medium" }}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Current Time (EST)</h5>
+                  <h3>{{ estTime | date : "medium" }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h5 class="card-title">Current Weather</h5>
+
+              <div class="form-group mb-3">
+                <label for="cityInput">City</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="cityInput"
+                    class="form-control"
+                    [(ngModel)]="city"
+                    placeholder="Enter city name"
+                  />
+                  <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    (click)="getWeather()"
+                  >
+                    Get Weather
+                  </button>
+                </div>
+              </div>
+
+              <div *ngIf="weatherLoading" class="text-center">
+                <p>Loading weather data...</p>
+              </div>
+
+              <div *ngIf="weatherError" class="alert alert-danger">
+                <p>{{ weatherError }}</p>
+              </div>
+
+              <div
+                *ngIf="weatherData && !weatherLoading"
+                class="row align-items-center"
+              >
+                <div class="col-md-6 text-center">
+                  <img
+                    *ngIf="weatherData.weather[0].icon"
+                    [src]="
+                      'https://openweathermap.org/img/wn/' +
+                      weatherData.weather[0].icon +
+                      '@2x.png'
+                    "
+                    alt="Weather Icon"
+                  />
+                  <h5>{{ weatherData.weather[0].main }}</h5>
+                  <p>{{ weatherData.weather[0].description }}</p>
+                </div>
+                <div class="col-md-6">
+                  <h2>{{ weatherData.name }}</h2>
+                  <p class="lead">{{ weatherData.main.temp }} °C</p>
+                  <p>Humidity: {{ weatherData.main.humidity }}%</p>
+                  <p>Pressure: {{ weatherData.main.pressure }} hPa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Register</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+              />
+              <div
+                *ngIf="f.firstName.touched && f.firstName.errors"
+                class="invalid-feedback d-block"
+              >
+                <div *ngIf="f.firstName.errors.required">
+                  First Name is required
+                </div>
+                <div *ngIf="f.firstName.errors.minlength">
+                  First Name must be at least 2 characters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+              />
+              <div
+                *ngIf="f.lastName.touched && f.lastName.errors"
+                class="invalid-feedback d-block"
+              >
+                <div *ngIf="f.lastName.errors.required">
+                  Last Name is required
+                </div>
+                <div *ngIf="f.lastName.errors.minlength">
+                  Last Name must be at least 2 characters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                formControlName="username"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    (submitted && f.username.errors) || usernameExists
+                }"
+              />
+              <div
+                *ngIf="f.username.touched && f.username.errors"
+                class="invalid-feedback d-block"
+              >
+                <div *ngIf="f.username.errors.required">
+                  Username is required
+                </div>
+                <div *ngIf="f.username.errors.minlength">
+                  Username must be at least 4 characters
+                </div>
+              </div>
+              <div *ngIf="usernameExists" class="invalid-feedback d-block">
+                Username already exists
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <div
+                *ngIf="f.password.touched && f.password.errors"
+                class="invalid-feedback d-block"
+              >
+                <div *ngIf="f.password.errors.required">
+                  Password is required
+                </div>
+                <div *ngIf="f.password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+                <div *ngIf="f.password.errors.pattern">
+                  Password must contain at least one number and one special
+                  character
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group d-grid">
+              <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            <p>Already have an account? <a routerLink="/login">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

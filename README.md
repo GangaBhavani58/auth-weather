@@ -1,27 +1,33 @@
-# AuthWeather
+Angular Auth Weather Application
+This application implements a user authentication system with registration, login, and a dashboard that displays the current time (IST & EST) and weather conditions.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+Features
+User Registration with validations
+User Login authentication
 
-## Development server
+SetUp
+Install Angular 11th version (11.1.4 used in this project)
+Install Node 14th version which is compatible with Angular 11 (14.20.0)
+Use npm 6th version (6.14.17 used in this project)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Create project using ng new project-name
+Create folders like components,modules,services to hold respective files
 
-## Code scaffolding
+To create component inside components folder, use:
+ng g c components/login
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To generate module with lazy loading, use:
+ng generate module modules/dashboard --route dashboard --module app
 
-## Build
+To create a service, use:
+ng generate service services/user
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To create a guard inside services folder, use:
+ng generate guard services/auth
 
-## Running unit tests
+Register everything that is being used in the AppModule
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Include the behaviour/functionality in respective components, guards, services,modules
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Then run the application using:
+ng serve
