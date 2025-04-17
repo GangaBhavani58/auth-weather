@@ -26,6 +26,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    if (!this.userService.isLoggedIn()) {
+      this.logout(); // Clean up and redirect
+      return;
+    }
+
     this.currentUser = this.userService.currentUserValue;
 
     this.timeSubscription = interval(1000).subscribe(() => {
@@ -33,12 +38,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.getWeather();
-  }
-
-  ngOnDestroy(): void {
-    if (this.timeSubscription) {
-      this.timeSubscription.unsubscribe();
-    }
   }
 
   updateTimes(): void {
@@ -74,5 +73,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   logout(): void {
     this.userService.logout();
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeSubscription) {
+      this.timeSubscription.unsubscribe();
+    }
   }
 }

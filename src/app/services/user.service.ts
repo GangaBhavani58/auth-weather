@@ -95,7 +95,7 @@ export class UserService {
     const payload = {
       username: user.username,
       firstName: user.firstName,
-      exp: new Date().getTime() + 3600000, // 1 hour expiration
+      exp: new Date().getTime() + 24 * 60 * 60 * 1000, // 1 day expiration
     };
 
     const headerStr = btoa(JSON.stringify(header));

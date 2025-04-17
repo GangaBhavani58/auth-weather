@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/* src/styles.css */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 html,
@@ -25,15 +24,28 @@ body {
 
 .form-control:focus {
   box-shadow: none;
-  border-color: #80bdff;
+  border-color: rgb(122, 122, 239);
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: rgb(122, 122, 239);
+  border-color: rgb(122, 122, 239);
+}
+
+.bg-primary {
+  background-color: rgb(122, 122, 239) !important;
+}
+
+.text-primary {
+  color: rgb(122, 122, 239) !important;
+}
+
+.btn-primary {
+  background-color: rgb(122, 122, 239) !important;
+  border-color: rgb(122, 122, 239) !important;
 }
 
 .btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: rgb(122, 122, 239);
+  border-color: rgb(122, 122, 239);
 }
